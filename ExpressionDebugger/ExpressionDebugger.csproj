@@ -9,12 +9,12 @@
 		<RepositoryUrl>https://github.com/chaowlert/ExpressionDebugger</RepositoryUrl>
 		<PackageTags>expression;linq;debug</PackageTags>
 		<PackageIconUrl>https://cloud.githubusercontent.com/assets/5763993/26522656/41e28a6e-432f-11e7-9cae-7856f927d1a1.png</PackageIconUrl>
-		<PackageIcon>icon.png</PackageIcon>
 		<SignAssembly>True</SignAssembly>
 		<PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 		<AssemblyOriginatorKeyFile>ExpressionDebugger.snk</AssemblyOriginatorKeyFile>
 		<Version>2.2.0</Version>
-		<PackageLicense>https://github.com/chaowlert/ExpressionDebugger/blob/master/LICENSE</PackageLicense>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseUrl>https://github.com/chaowlert/ExpressionDebugger/blob/master/LICENSE</PackageLicenseUrl>
 		<LangVersion>8.0</LangVersion>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -28,5 +28,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\ExpressionTranslator\ExpressionTranslator.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
