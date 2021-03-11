@@ -59,7 +59,7 @@ namespace ExpressionDebugger
         {
             var translator = new ExpressionTranslator(definitions);
             if (node.NodeType == ExpressionType.Lambda)
-                translator.VisitLambda((LambdaExpression)node, 
+                translator.VisitLambda((LambdaExpression)node,
                     definitions?.IsExpression == true ? LambdaType.PublicLambda : LambdaType.PublicMethod,
                     definitions?.MethodName,
                     definitions?.IsInternal ?? false);
@@ -305,67 +305,65 @@ namespace ExpressionDebugger
 
         private static string Translate(ExpressionType nodeType)
         {
-            switch (nodeType)
+            return nodeType switch
             {
-                case ExpressionType.Add: return "+";
-                case ExpressionType.AddChecked: return "+";
-                case ExpressionType.AddAssign: return "+=";
-                case ExpressionType.AddAssignChecked: return "+=";
-                case ExpressionType.And: return "&";
-                case ExpressionType.AndAlso: return "&&";
-                case ExpressionType.AndAssign: return "&=";
-                case ExpressionType.ArrayLength: return ".Length";
-                case ExpressionType.Assign: return "=";
-                case ExpressionType.Coalesce: return "??";
-                case ExpressionType.Decrement: return " - 1";
-                case ExpressionType.Divide: return "/";
-                case ExpressionType.DivideAssign: return "/=";
-                case ExpressionType.Equal: return "==";
-                case ExpressionType.ExclusiveOr: return "^";
-                case ExpressionType.ExclusiveOrAssign: return "^=";
-                case ExpressionType.GreaterThan: return ">";
-                case ExpressionType.GreaterThanOrEqual: return ">=";
-                case ExpressionType.Increment: return " + 1";
-                case ExpressionType.IsFalse: return "!";
-                case ExpressionType.IsTrue: return "";
-                case ExpressionType.Modulo: return "%";
-                case ExpressionType.ModuloAssign: return "%=";
-                case ExpressionType.Multiply: return "*";
-                case ExpressionType.MultiplyAssign: return "*=";
-                case ExpressionType.MultiplyAssignChecked: return "*=";
-                case ExpressionType.MultiplyChecked: return "*";
-                case ExpressionType.Negate: return "-";
-                case ExpressionType.NegateChecked: return "-";
-                case ExpressionType.Not: return "!";
-                case ExpressionType.LeftShift: return "<<";
-                case ExpressionType.LeftShiftAssign: return "<<=";
-                case ExpressionType.LessThan: return "<";
-                case ExpressionType.LessThanOrEqual: return "<=";
-                case ExpressionType.NotEqual: return "!=";
-                case ExpressionType.OnesComplement: return "~";
-                case ExpressionType.Or: return "|";
-                case ExpressionType.OrAssign: return "|=";
-                case ExpressionType.OrElse: return "||";
-                case ExpressionType.PreDecrementAssign: return "--";
-                case ExpressionType.PreIncrementAssign: return "++";
-                case ExpressionType.PostDecrementAssign: return "--";
-                case ExpressionType.PostIncrementAssign: return "++";
-                //case ExpressionType.Power: return "**";
-                //case ExpressionType.PowerAssign: return "**=";
-                case ExpressionType.RightShift: return ">>";
-                case ExpressionType.RightShiftAssign: return ">>=";
-                case ExpressionType.Subtract: return "-";
-                case ExpressionType.SubtractChecked: return "-";
-                case ExpressionType.SubtractAssign: return "-=";
-                case ExpressionType.SubtractAssignChecked: return "-=";
-                case ExpressionType.Throw: return "throw";
-                case ExpressionType.TypeAs: return " as ";
-                case ExpressionType.UnaryPlus: return "+";
-                case ExpressionType.Unbox: return "";
-
-                default:
-                    throw new InvalidOperationException();
-            }
+                ExpressionType.Add => "+",
+                ExpressionType.AddChecked => "+",
+                ExpressionType.AddAssign => "+=",
+                ExpressionType.AddAssignChecked => "+=",
+                ExpressionType.And => "&",
+                ExpressionType.AndAlso => "&&",
+                ExpressionType.AndAssign => "&=",
+                ExpressionType.ArrayLength => ".Length",
+                ExpressionType.Assign => "=",
+                ExpressionType.Coalesce => "??",
+                ExpressionType.Decrement => " - 1",
+                ExpressionType.Divide => "/",
+                ExpressionType.DivideAssign => "/=",
+                ExpressionType.Equal => "==",
+                ExpressionType.ExclusiveOr => "^",
+                ExpressionType.ExclusiveOrAssign => "^=",
+                ExpressionType.GreaterThan => ">",
+                ExpressionType.GreaterThanOrEqual => ">=",
+                ExpressionType.Increment => " + 1",
+                ExpressionType.IsFalse => "!",
+                ExpressionType.IsTrue => "",
+                ExpressionType.Modulo => "%",
+                ExpressionType.ModuloAssign => "%=",
+                ExpressionType.Multiply => "*",
+                ExpressionType.MultiplyAssign => "*=",
+                ExpressionType.MultiplyAssignChecked => "*=",
+                ExpressionType.MultiplyChecked => "*",
+                ExpressionType.Negate => "-",
+                ExpressionType.NegateChecked => "-",
+                ExpressionType.Not => "!",
+                ExpressionType.LeftShift => "<<",
+                ExpressionType.LeftShiftAssign => "<<=",
+                ExpressionType.LessThan => "<",
+                ExpressionType.LessThanOrEqual => "<=",
+                ExpressionType.NotEqual => "!=",
+                ExpressionType.OnesComplement => "~",
+                ExpressionType.Or => "|",
+                ExpressionType.OrAssign => "|=",
+                ExpressionType.OrElse => "||",
+                ExpressionType.PreDecrementAssign => "--",
+                ExpressionType.PreIncrementAssign => "++",
+                ExpressionType.PostDecrementAssign => "--",
+                ExpressionType.PostIncrementAssign => "++",
+                //ExpressionType.Power => "**",
+                //ExpressionType.PowerAssign => "**=",
+                ExpressionType.RightShift => ">>",
+                ExpressionType.RightShiftAssign => ">>=",
+                ExpressionType.Subtract => "-",
+                ExpressionType.SubtractChecked => "-",
+                ExpressionType.SubtractAssign => "-=",
+                ExpressionType.SubtractAssignChecked => "-=",
+                ExpressionType.Throw => "throw",
+                ExpressionType.TypeAs => " as ",
+                ExpressionType.UnaryPlus => "+",
+                ExpressionType.Unbox => "",
+                _ => throw new InvalidOperationException()
+            };
         }
 
         protected override Expression VisitBinary(BinaryExpression node)
@@ -494,8 +492,8 @@ namespace ExpressionDebugger
 
         private string GetSingleTypeName(Type type)
         {
-            var name = type.DeclaringType == null && Definitions?.PrintFullTypeName == true 
-                ? type.FullName! 
+            var name = type.DeclaringType == null && Definitions?.PrintFullTypeName == true
+                ? type.FullName!
                 : type.Name;
             if (!type.GetTypeInfo().IsGenericType)
             {
@@ -538,26 +536,17 @@ namespace ExpressionDebugger
 
         private Expression VisitMultiline(Expression node, bool shouldReturn)
         {
-            switch (node.NodeType)
+            return node.NodeType switch
             {
-                case ExpressionType.Block:
-                    return VisitBlock((BlockExpression)node, shouldReturn);
-
-                case ExpressionType.Conditional:
-                    return VisitConditional((ConditionalExpression)node, shouldReturn);
-
-                case ExpressionType.Try:
-                    return VisitTry((TryExpression)node, shouldReturn);
-
-                case ExpressionType.Switch:
-                    return VisitSwitch((SwitchExpression)node, shouldReturn);
-
+                ExpressionType.Block => VisitBlock((BlockExpression) node, shouldReturn),
+                ExpressionType.Conditional => VisitConditional((ConditionalExpression) node, shouldReturn),
+                ExpressionType.Try => VisitTry((TryExpression) node, shouldReturn),
+                ExpressionType.Switch => VisitSwitch((SwitchExpression) node, shouldReturn),
                 //case ExpressionType.DebugInfo:
                 //case ExpressionType.Goto:
                 //case ExpressionType.Loop:
-                default:
-                    return Visit(node)!;
-            }
+                _ => Visit(node)!
+            };
         }
 
         private Expression VisitBody(Expression node, bool shouldReturn = false)
@@ -1151,11 +1140,11 @@ namespace ExpressionDebugger
                 {
                     args = new List<ParameterExpression>();
                     var arg = VisitParameter(node.Parameters[0]);
-                    args.Add((ParameterExpression) arg);
+                    args.Add((ParameterExpression)arg);
                 }
                 else
                 {
-                    args = VisitArguments("(", node.Parameters.ToList(), p => (ParameterExpression) VisitParameter(p),")");
+                    args = VisitArguments("(", node.Parameters.ToList(), p => (ParameterExpression)VisitParameter(p), ")");
                 }
 
                 Write(" => ");
@@ -1349,51 +1338,51 @@ namespace ExpressionDebugger
         {
             if (!isFunc)
             {
-                switch (argCount)
+                return argCount switch
                 {
-                    case 0: return typeof(Action);
-                    case 1: return typeof(Action<>);
-                    case 2: return typeof(Action<,>);
-                    case 3: return typeof(Action<,,>);
-                    case 4: return typeof(Action<,,,>);
-                    case 5: return typeof(Action<,,,,>);
-                    case 6: return typeof(Action<,,,,,>);
-                    case 7: return typeof(Action<,,,,,,>);
-                    case 8: return typeof(Action<,,,,,,,>);
-                    case 9: return typeof(Action<,,,,,,,,>);
-                    case 10: return typeof(Action<,,,,,,,,,>);
-                    case 11: return typeof(Action<,,,,,,,,,,>);
-                    case 12: return typeof(Action<,,,,,,,,,,,>);
-                    case 13: return typeof(Action<,,,,,,,,,,,,>);
-                    case 14: return typeof(Action<,,,,,,,,,,,,,>);
-                    case 15: return typeof(Action<,,,,,,,,,,,,,,>);
-                    case 16: return typeof(Action<,,,,,,,,,,,,,,,>);
-                    default: throw new InvalidOperationException("Cannot handle non-public method");
-                }
+                    0 => typeof(Action),
+                    1 => typeof(Action<>),
+                    2 => typeof(Action<,>),
+                    3 => typeof(Action<,,>),
+                    4 => typeof(Action<,,,>),
+                    5 => typeof(Action<,,,,>),
+                    6 => typeof(Action<,,,,,>),
+                    7 => typeof(Action<,,,,,,>),
+                    8 => typeof(Action<,,,,,,,>),
+                    9 => typeof(Action<,,,,,,,,>),
+                    10 => typeof(Action<,,,,,,,,,>),
+                    11 => typeof(Action<,,,,,,,,,,>),
+                    12 => typeof(Action<,,,,,,,,,,,>),
+                    13 => typeof(Action<,,,,,,,,,,,,>),
+                    14 => typeof(Action<,,,,,,,,,,,,,>),
+                    15 => typeof(Action<,,,,,,,,,,,,,,>),
+                    16 => typeof(Action<,,,,,,,,,,,,,,,>),
+                    _ => throw new InvalidOperationException("Cannot handle non-public method")
+                };
             }
             else
             {
-                switch (argCount)
+                return argCount switch
                 {
-                    case 0: return typeof(Func<>);
-                    case 1: return typeof(Func<,>);
-                    case 2: return typeof(Func<,,>);
-                    case 3: return typeof(Func<,,,>);
-                    case 4: return typeof(Func<,,,,>);
-                    case 5: return typeof(Func<,,,,,>);
-                    case 6: return typeof(Func<,,,,,,>);
-                    case 7: return typeof(Func<,,,,,,,>);
-                    case 8: return typeof(Func<,,,,,,,,>);
-                    case 9: return typeof(Func<,,,,,,,,,>);
-                    case 10: return typeof(Func<,,,,,,,,,,>);
-                    case 11: return typeof(Func<,,,,,,,,,,,>);
-                    case 12: return typeof(Func<,,,,,,,,,,,,>);
-                    case 13: return typeof(Func<,,,,,,,,,,,,,>);
-                    case 14: return typeof(Func<,,,,,,,,,,,,,,>);
-                    case 15: return typeof(Func<,,,,,,,,,,,,,,,>);
-                    case 16: return typeof(Func<,,,,,,,,,,,,,,,,>);
-                    default: throw new InvalidOperationException("Cannot handle non-public method");
-                }
+                    0 => typeof(Func<>),
+                    1 => typeof(Func<,>),
+                    2 => typeof(Func<,,>),
+                    3 => typeof(Func<,,,>),
+                    4 => typeof(Func<,,,,>),
+                    5 => typeof(Func<,,,,,>),
+                    6 => typeof(Func<,,,,,,>),
+                    7 => typeof(Func<,,,,,,,>),
+                    8 => typeof(Func<,,,,,,,,>),
+                    9 => typeof(Func<,,,,,,,,,>),
+                    10 => typeof(Func<,,,,,,,,,,>),
+                    11 => typeof(Func<,,,,,,,,,,,>),
+                    12 => typeof(Func<,,,,,,,,,,,,>),
+                    13 => typeof(Func<,,,,,,,,,,,,,>),
+                    14 => typeof(Func<,,,,,,,,,,,,,,>),
+                    15 => typeof(Func<,,,,,,,,,,,,,,,>),
+                    16 => typeof(Func<,,,,,,,,,,,,,,,,>),
+                    _ => throw new InvalidOperationException("Cannot handle non-public method")
+                };
             }
         }
 
@@ -1841,7 +1830,8 @@ namespace ExpressionDebugger
                     .ToList();
                 var properties = _properties?
                     .ToDictionary(it => it.Name,
-                        it => $"{Translate(it.Type)} {it.Name} {{ get; {(it.IsReadOnly ? "" : "set; ")}}}");
+                it => $"{Translate(it.Type)}{(it.NullableReference ? "?" : "")} {it.Name} {{ get; {(it.IsReadOnly ? "" : "set; ")}}}");
+                //todo cuizj: nullable, only property?
 
                 if (Definitions?.TypeName != null)
                 {
@@ -1888,6 +1878,14 @@ namespace ExpressionDebugger
                     }
                     Indent();
                 }
+
+                //add #nullable enable
+                if (_properties?.Any(o => o.NullableReference) == true)
+                {
+                    _writer.WriteLine();
+                    _writer.Write("#nullable enable");
+                }
+
                 if (constants != null)
                 {
                     foreach (var constant in constants)
